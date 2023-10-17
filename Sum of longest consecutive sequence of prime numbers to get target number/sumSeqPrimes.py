@@ -11,7 +11,7 @@ def is_prime(n):
             return False
     return True
 
-def reqPrime(n):
+def reqPrime():
     n = int(input("Enter your target number: "))
     primes = [2]
     i = 3
@@ -31,7 +31,8 @@ def reqPrime(n):
                     fin_seq = seq
             i = i + 1
         j = j - 1
-    return(sum(fin_seq))
+    return(sum(fin_seq)), fin_seq
     
-result = reqPrime()
+result, seq = reqPrime()
 print("The sum of the longest sequence of prime numbers that equals or is just less than the target is:", result)
+print("The longest sequence of prime numbers that equals or is just less than the target is:", seq)
