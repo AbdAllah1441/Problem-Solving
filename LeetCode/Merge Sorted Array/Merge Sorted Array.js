@@ -1,16 +1,17 @@
 var merge = function(nums1, m, nums2, n) {
-    let temp = 0;
+    //nums1
     for (let i = 0; i < m; i++) {
+        //nums2
         for (let j = 0; j < n; j++) {
-            if (nums2[j] < nums1[i] ) {
-                temp = nums2[j];
-                nums2[j] = nums1[i];
-                nums1[i] = temp;
-                nums2.sort((a,b) => a-b);
+            if (nums1[i] > nums2[j]) {
+                const x = nums1[i];
+                nums1[i] = nums2[j];
+                nums2[j] = x;
             }
         }
     }
-    for (let i = 0; i < n; i++) {
-        nums1[i+m] = nums2[i]
+    nums2.sort(function(a, b){return a - b});
+    for (let index = 0; index < n; index++) {
+        nums1[m + index] = nums2[index]
     }
 };
