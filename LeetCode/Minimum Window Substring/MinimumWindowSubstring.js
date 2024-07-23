@@ -14,6 +14,10 @@ function countOccurrences(array, element) {
 }
 
 var minWindow = function(s, t) {
+    const charCountT = {};
+    for (const char of t) {
+        charCountT[char] = (charCountT[char] || 0) + 1;
+    }
     // array of stacks of chars
     let allStrings = [];
     // array of stacks of indices
@@ -44,13 +48,8 @@ var minWindow = function(s, t) {
     }
 
     // remove stacks which doesn't contain all letters
-    let indices = allIndices.map((i) => {
-        if(i.length === t.length)
-            return i;
-        else if (i.length > t.length)
-            return i.slice(0, t.length);
-        else
-            return[]
+    let indices = allIndices.filter((i) => {
+        return i.length === t.length
     });
         
     // check if there is no substring
