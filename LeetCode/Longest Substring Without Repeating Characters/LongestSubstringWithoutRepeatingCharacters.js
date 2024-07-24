@@ -5,19 +5,14 @@
 var lengthOfLongestSubstring = function(s) {
     let str = '';
     let max = 0;
-    for (let i = 0, j = 0; i < s.length && j < s.length; i++) {
+    for (let i = 0, j = 0; i < s.length; i++) {
         if (str.includes(s[i])) {
-            i = j;
-            j++;
-            if (str.length > max)
-                max = str.length;
-            str = "";
+            max = str.length > max ? str.length : max;
+            j += str.indexOf(s[i]) + 1;
+            str = s.slice(j, i + 1);
         } else {
-            str += s[i];
-        }    
+            str += s[i]
+        }
     }
-    if (str !== '') {
-       max =  str.length > max ? str.length : max;
-    }
-    return max;
+    return str.length > max ? str.length : max;
 };
