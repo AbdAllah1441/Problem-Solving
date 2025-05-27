@@ -20,10 +20,10 @@ var isAnagram = function (s, t) {
       t_map[`${t[i]}`] = 1;
     }
   }
-  let keys =
-    Object.keys(s_map).length > Object.keys(t_map).length
-      ? Object.keys(s_map)
-      : Object.keys(t_map);
+  if (Object.keys(s_map).length !== Object.keys(t_map).length) {
+    return false;
+  }
+  let keys = Object.keys(s_map);
   for (let i = 0; i < keys.length; i++) {
     if (s_map[keys[i]] !== t_map[keys[i]]) {
       return false;
