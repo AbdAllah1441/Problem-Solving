@@ -4,26 +4,26 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-  let s_map = {};
-  let t_map = {};
-  let length = s.length > t.length ? s.length : t.length;
-  for (let i = 0; i < length; i++) {
-    if (s_map[`${s[i]}`]) {
-      s_map[`${s[i]}`] += 1;
+  if (s.length !== t.length) {
+    return false;
+  }
+  let map = {};
+  for (let i = 0; i < s.length; i++) {
+    if (map[`${s[i]}`]) {
+      map[`${s[i]}`] += 1;
     } else {
-      s_map[`${s[i]}`] = 1;
+      map[`${s[i]}`] = 1;
     }
-    if (t_map[`${t[i]}`]) {
-      t_map[`${t[i]}`] += 1;
+    if (map[`${t[i]}`]) {
+      map[`${t[i]}`] -= 1;
     } else {
-      t_map[`${t[i]}`] = 1;
+      map[`${t[i]}`] = -1;
     }
   }
-  let keys = Object.keys(s_map);
-  for (let i = 0; i < keys.length; i++) {
-    if (s_map[keys[i]] !== t_map[keys[i]]) {
+  for (let key in map) {
+    if (map[key] !== 0) {
       return false;
     }
   }
-  return s_map;
+  return true;
 };
