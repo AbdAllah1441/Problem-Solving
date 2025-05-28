@@ -9,16 +9,8 @@ var isAnagram = function (s, t) {
   }
   let map = {};
   for (let i = 0; i < s.length; i++) {
-    if (map[s[i]]) {
-      map[s[i]] += 1;
-    } else {
-      map[s[i]] = 1;
-    }
-    if (map[t[i]]) {
-      map[t[i]] -= 1;
-    } else {
-      map[t[i]] = -1;
-    }
+    map[s[i]] = map[s[i]] ? map[s[i]] + 1 : 1
+    map[t[i]] = map[t[i]] ? map[t[i]] - 1 : -1
   }
   for (let key in map) {
     if (map[key] !== 0) {
